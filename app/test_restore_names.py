@@ -1,6 +1,6 @@
-import copy
-
 import pytest
+
+from copy import deepcopy
 
 from app.restore_names import restore_names
 
@@ -20,7 +20,7 @@ def user_list() -> list:
 ]
 
 def test_restore_names_when_list_is_correct(user_list) -> None:
-    user_list_before_editing = copy.deepcopy(user_list)
+    user_list_before_editing = deepcopy(user_list)
 
     restore_names(user_list)
 
@@ -38,7 +38,7 @@ def test_restore_names_when_list_is_empty(user_list) -> None:
 
 
 def test_restore_names_when_first_name_is_none(user_list) -> None:
-    user_list_before_editing = copy.deepcopy(user_list)
+    user_list_before_editing = deepcopy(user_list)
 
     user_list[0]["first_name"] = None
 
@@ -48,7 +48,7 @@ def test_restore_names_when_first_name_is_none(user_list) -> None:
 
 
 def test_restore_names_when_there_is_not_first_name_attribute(user_list) -> None:
-    user_list_before_editing = copy.deepcopy(user_list)
+    user_list_before_editing = deepcopy(user_list)
 
     del user_list[0]["first_name"]
 
@@ -59,7 +59,7 @@ def test_restore_names_when_there_is_not_first_name_attribute(user_list) -> None
 def test_restore_names_when_there_are_few_names(user_list) -> None:
     user_list[0]["full_name"] = "Jack Grok Holy"
 
-    user_list_before_editing = copy.deepcopy(user_list)
+    user_list_before_editing = deepcopy(user_list)
 
     del user_list[0]["first_name"]
 
